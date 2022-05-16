@@ -24,7 +24,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <%- include('partials/navbar') %>
@@ -47,26 +47,7 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
           <!-- Post preview-->
 
-          <% for (let i=0; i < 20; i++) {%>
-          <div class="post-preview">
-            <a href="http://localhost:3000/articulos/<%- i %>">
-              <h2 class="post-title"><%= articles[i].title %></h2>
-              <h3 class="post-subtitle">
-                Agregar subtitulo o preview Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quasi, nisi?
-              </h3>
-              <!--Necesitamos insertar parte del texto con un maximo de palabras -->
-              <img src="<%= articles[i].img %>" alt="" />
-            </a>
-            <p class="post-meta">
-              Posted by
-              <a href="#!"><%= articles[i].userId %></a>
-              on <%= articles[i].createdAt %>
-            </p>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <%} %>
+          <%- include ('partials/articles.ejs') %>
 
           <!-- Pager-->
           <div class="d-flex justify-content-end mb-4">
