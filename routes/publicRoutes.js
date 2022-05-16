@@ -5,15 +5,17 @@ const articleController = require("../controllers/articleController");
 
 // Rutas Públicas:
 // ...
+publicRouter.get("/", pagesController.redirectToHome);
+
 publicRouter.get("/home/", pagesController.showHome);
 
-publicRouter.get("/articulo/:id", articleController.show);
+publicRouter.get("/article/:id", articleController.show);
 
 publicRouter.get("/about", (req, res) => {
   res.render("aboutUs");
 });
 
-publicRouter.get("/api/articulos", pagesController.showJson);
+publicRouter.get("/api/articles", pagesController.showJson);
 
 publicRouter.get("/contact", (req, res) => {
   res.render("contact");
