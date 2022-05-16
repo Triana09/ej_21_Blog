@@ -61,19 +61,17 @@
               </thead>
     
               <tbody id="tableBody">            
-                <% for(let i = 0; i < articles.length; i++){%>
+                <% for(article of articles){%>
                   <tr class="usuario">
-                    <th scope="row"><%=articles[i].id%></th>                
-                    <td><%=articles[i].title%></td>
-                    <% let j = articles[i].userId %>
-                    <% console.log(users[j].lastname)%>
-                    <td><%=`${articles[i].userId} (${users[j].firstname} ${+ users[j].lastname})`%></td>
+                    <th scope="row"><%=article.id%></th>                
+                    <td><%=article.title%></td>
+                    <td><%=`${article.userId} (${article.user.firstname} ${article.user.lastname})`%></td>
                     <td>
-                      <a href="http://localhost:3000/admin/editar/<%- articles[i].id %>">
+                      <a href="http://localhost:3000/admin/editar/<%- article.id %>">
                         <button type="button" class="btn btn-primary btn-sm">Editar</button>
                       </a>
     
-                      <form class="d-inline" action="/admin/eliminar/<%- articles[i].id %>" method="post">
+                      <form class="d-inline" action="/admin/eliminar/<%- article.id %>" method="post">
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                       </form>                    
                         

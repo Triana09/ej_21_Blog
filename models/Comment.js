@@ -14,12 +14,6 @@ module.exports = (sequelize, Model, DataTypes) => {
       creationDate: {
         type: DataTypes.DATE,
       },
-      userId: {
-        type: DataTypes.STRING,
-      },
-      articleId: {
-        type: DataTypes.STRING,
-      },
     },
     {
       sequelize,

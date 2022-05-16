@@ -20,9 +20,6 @@ module.exports = (sequelize, Model, DataTypes) => {
       creationDate: {
         type: DataTypes.DATE,
       },
-      userId: {
-        type: DataTypes.STRING,
-      },
     },
     {
       sequelize,

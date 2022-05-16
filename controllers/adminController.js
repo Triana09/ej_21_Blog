@@ -1,14 +1,10 @@
 const { Article } = require("../models");
-<<<<<<< Updated upstream
 const confirmationEmail = require("../email");
-=======
 const { User } = require("../models");
->>>>>>> Stashed changes
 
 async function showHomeAdmin(req, res) {
-  const articles = await Article.findAll();
-  const users = await User.findAll();
-  res.render("admin", { articles, users });
+  const articles = await Article.findAll({ include: User });
+  res.render("admin", { articles });
 }
 
 async function addArticle(req, res) {
