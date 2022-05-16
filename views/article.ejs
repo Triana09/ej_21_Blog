@@ -47,9 +47,19 @@
               on <%= article.createdAt %>
             </p>
           </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Pager-->
+        </div>
+        <div>
+          <h3>Comentarios</h3>
+          <% for (comment of comments) { %> 
+            <div>
+              <p class="post-subtitle">
+                <%= comment.content %> 
+              </p>
+              <p class="post-meta">
+                Posted on: <%= comment.creationDate %> 
+              </p>
+            </div>
+          <% } %> 
         </div>
       </div>
     </div>
