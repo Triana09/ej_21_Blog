@@ -1,4 +1,4 @@
-<% %> <% for (let i = 0; i <= 10; i++ ) {%>
+<% for (let i = 0; i <= 10; i++ ) {%>
 <div class="post-preview">
   <a href="http://localhost:3000/articulos/<%- i %>">
     <h2 class="post-title"><%= articles[i].title %></h2>
@@ -16,3 +16,7 @@
 <!-- Divider-->
 <hr class="my-4" />
 <%} %>
+
+<div class="d-flex justify-content-end mb-4">
+  <a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a>
+</div>
