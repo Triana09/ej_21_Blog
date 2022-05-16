@@ -4,6 +4,16 @@ const adminController = require("../controllers/adminController");
 
 // Rutas del Admin:
 // ...
-adminRouter.get("/home", adminController.showHomeAdmin);
+adminRouter.get("/", adminController.showHomeAdmin);
+
+adminRouter.get("/crear", (req, res) => {
+  res.render("add");
+});
+adminRouter.post("/", adminController.addArticle);
+
+adminRouter.get("/editar/:id", adminController.showEditArt);
+adminRouter.post("/editar/:id", adminController.editArticle);
+
+adminRouter.post("/eliminar/:id", adminController.deleteArticle);
 
 module.exports = adminRouter;

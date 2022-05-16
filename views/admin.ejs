@@ -24,58 +24,64 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <%- include('partials/navbar') %>
     <!-- Page Header-->
     <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Triana, Mateo & Stefano</span>
+              <h1>Blog/Admin</h1>
+              <span class="subheading">Sección Administrador: Crea/Edita/Elimina.</span>
             </div>
           </div>
         </div>
       </div>
     </header>
+    <%- include('partials/navbarAdmin') %>
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <!-- Post preview-->
-<<<<<<< Updated upstream
-
-          <%- include ('partials/articles.ejs') %>
-=======
-          <% for (let i=0; i < 10; i++) {%>
-          <div class="post-preview">
-            <a href="http://localhost:3000/articulos/<%- i %>">
-              <h2 class="post-title"><%= articles[i].title %></h2>
-              <h3 class="post-subtitle">
-                Agregar subtitulo o preview Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quasi, nisi?
-              </h3>
-              <!--Necesitamos insertar parte del texto con un maximo de palabras -->
-              <img src="<%= articles[i].img %>" alt="" />
+        <div class="bntNuevo-Container mb-3 d-flex justify-content-between align-items-center">
+            <h1 class="text-dark">Lista de Articulos</h1>
+            <a href="http://localhost:3000/admin/crear">
+              <button type="button" class="btn btn-success btn-sm">Nuevo Articulo</button>
             </a>
-            <p class="post-meta">
-              Posted by
-              <a href="#!"><%= articles[i].userId %></a>
-              on <%= articles[i].createdAt %>
-            </p>
           </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <%} %>
->>>>>>> Stashed changes
-
-          <!-- Pager-->
-        </div>
-      </div>
+        <section class="table-container border border-3 rounded border-light p-2">
+            <table class="table table-striped bg-light container">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+    
+              <tbody id="tableBody">            
+                <% for(let i = 0; i < articles.length; i++){%>
+                  <tr class="usuario">
+                    <th scope="row"><%=articles[i].id%></th>                
+                    <td><%=articles[i].title%></td>
+                    <td><%=articles[i].userId%></td>
+                    <td>
+                      <a href="http://localhost:3000/admin/editar/<%- articles[i].id %>">
+                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                      </a>
+    
+                      <form class="d-inline" action="/admin/eliminar/<%- articles[i].id %>" method="post">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                      </form>                    
+                        
+                    </td>
+                  </tr
+                <%} %>            
+              </tbody>
+            </table>
     </div>
+
     <!-- Footer-->
     <footer class="border-top">
       <div class="container px-4 px-lg-5">

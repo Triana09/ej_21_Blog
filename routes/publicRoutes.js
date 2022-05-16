@@ -5,7 +5,7 @@ const articleController = require("../controllers/articleController");
 
 // Rutas Públicas:
 // ...
-publicRouter.get("/home", pagesController.showHome);
+publicRouter.get("/home/", pagesController.showHome);
 
 publicRouter.get("/articulo/:id", articleController.show);
 
