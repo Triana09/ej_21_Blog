@@ -1,16 +1,16 @@
-<% for (let i = 1; i <= 10; i++) { %>
+<% for (article of articles) { %>
 <div class="post-preview">
-  <a href="http://localhost:3000/article/<%= i %>">
-    <h2 class="post-title"><%= articles[i].title %></h2>
-    <p class="post-subtitle"><%= articles[i].content %></p>
+  <a href="http://localhost:3000/article/<%= article.id %>">
+    <h2 class="post-title"><%= article.title %></h2>
+    <p class="post-subtitle"><%= article.content %></p>
     <!-- contenido de artículo recortado -->
     <!--Necesitamos insertar parte del texto con un maximo de palabras -->
-    <img src="<%= articles[i].img %>" alt="" id="imghome" />
+    <img src="<%= article.img %>" alt="" id="imghome" />
   </a>
   <p class="post-meta">
-    Posted by <% const j = articles[i].userId %>
-    <a href="#!"><%= users[j].firstname +' '+ users[j].lastname%></a>
-    on <%= articles[i].creationDate %>
+    Posted by
+    <a href="#!"><%=`${article.user.firstname} ${article.user.lastname}`%></a>
+    on <%= article.creationDate %>
   </p>
 </div>
 <!-- Divider-->
