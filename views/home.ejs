@@ -46,27 +46,7 @@
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
           <!-- Post preview-->
-          <%- include ('partials/articles.ejs') %> ======= <% for (let i=0; i < 10; i++) {%>
-          <div class="post-preview">
-            <a href="http://localhost:3000/articulos/<%- i %>">
-              <h2 class="post-title"><%= articles[i].title %></h2>
-              <h3 class="post-subtitle">
-                Agregar subtitulo o preview Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quasi, nisi?
-              </h3>
-              <!--Necesitamos insertar parte del texto con un maximo de palabras -->
-              <img src="<%= articles[i].img %>" alt="" />
-            </a>
-            <p class="post-meta">
-              Posted by
-              <a href="#!"><%= articles[i].userId %></a>
-              on <%= articles[i].createdAt %>
-            </p>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <%} %> >>>>>>> Stashed changes
-
+          <%- include ('partials/articles.ejs') %>
           <!-- Pager-->
         </div>
       </div>
