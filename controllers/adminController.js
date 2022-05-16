@@ -1,4 +1,5 @@
 const { Article } = require("../models");
+const confirmationEmail = require("../email");
 
 async function showHomeAdmin(req, res) {
   const articles = await Article.findAll();
@@ -12,6 +13,7 @@ async function addArticle(req, res) {
     content: req.body.contentNewArt,
     userId: req.body.userId_NewArt,
   });
+  confirmationEmail();
   res.redirect("/admin");
 }
 
