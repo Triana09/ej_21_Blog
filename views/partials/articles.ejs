@@ -1,6 +1,6 @@
-<% for (let i = 0; i < 10; i++) { %>
+<% for (let i = 1; i <= 10; i++) { %>
 <div class="post-preview">
-  <a href="http://localhost:3000/articulos/<%- i %>">
+  <a href="http://localhost:3000/article/<%= i %>">
     <h2 class="post-title"><%= articles[i].title %></h2>
     <p class="post-subtitle"><%= articles[i].content %></p>
     <!-- contenido de artículo recortado -->

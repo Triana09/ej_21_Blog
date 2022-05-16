@@ -9,6 +9,10 @@ async function showHome(req, res) {
   res.render("home", { articles, users, comments });
 }
 
+async function redirectToHome(req, res) {
+  res.redirect("/home");
+}
+
 async function showContact(req, res) {
   res.render("contact");
 }
@@ -27,6 +31,7 @@ async function showJson(req, res) {
 
 module.exports = {
   showHome,
+  redirectToHome,
   showContact,
   showAboutUs,
   showJson,
