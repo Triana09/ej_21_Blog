@@ -1,15 +1,9 @@
 const { faker } = require("@faker-js/faker");
 const { Article } = require("../models");
-
-const rn = require("random-number");
-const options = {
-  min: 0,
-  max: 100,
-  integer: true,
-};
-rn(options);
-
+// const { cantArt, cantUser, cantComment } = require("./count");
+const rdm = require("./random");
 faker.locale = "es";
+
 // capaz podemos require la table de users y agregarlo random
 module.exports = async () => {
   const articles = [];
@@ -19,8 +13,8 @@ module.exports = async () => {
       title: faker.lorem.sentence(5),
       img: "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png",
       content: faker.lorem.paragraphs(),
-      userId: rn(options),
-      createdAt: faker.date.between("2020-01-01T00:00:00.000Z", "2022-01-01T00:00:00.000Z"),
+      userId: rdm(1, 50),
+      creationDate: faker.date.between("2020-01-01", "2022-01-01"),
     });
   }
   await Article.bulkCreate(articles);
