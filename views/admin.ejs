@@ -65,7 +65,9 @@
                   <tr class="usuario">
                     <th scope="row"><%=articles[i].id%></th>                
                     <td><%=articles[i].title%></td>
-                    <td><%=articles[i].userId%></td>
+                    <% let j = articles[i].userId %>
+                    <% console.log(users[j].lastname)%>
+                    <td><%=`${articles[i].userId} (${users[j].firstname} ${+ users[j].lastname})`%></td>
                     <td>
                       <a href="http://localhost:3000/admin/editar/<%- articles[i].id %>">
                         <button type="button" class="btn btn-primary btn-sm">Editar</button>

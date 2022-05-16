@@ -8,12 +8,11 @@
     <img src="<%= articles[i].img %>" alt="" id="imghome" />
   </a>
   <p class="post-meta">
-    Posted by
-    <a href="#!"><%= articles[i].userId %></a>
+    Posted by <% const j = articles[i].userId %>
+    <a href="#!"><%= users[j].firstname +' '+ users[j].lastname%></a>
     on <%= articles[i].createdAt %>
   </p>
 </div>
 <!-- Divider-->
 <hr class="my-4" />
 <% } %>
-
