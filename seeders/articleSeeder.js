@@ -20,6 +20,7 @@ module.exports = async () => {
       img: "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png",
       content: faker.lorem.paragraphs(),
       userId: rn(options),
+      createdAt: faker.date.between("2020-01-01T00:00:00.000Z", "2022-01-01T00:00:00.000Z"),
     });
   }
   await Article.bulkCreate(articles);
