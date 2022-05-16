@@ -11602,3 +11602,12 @@ header.masthead .post-heading .meta a {
  max-width: 33rem;
  height: auto;
 }
+
+/* Agregado manualmente */
+
+.post-subtitle {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 40px;
+}
