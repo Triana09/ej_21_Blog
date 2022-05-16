@@ -8,8 +8,7 @@ async function index(req, res) {}
 // Display the specified resource.
 async function show(req, res) {
   const article = await Article.findByPk(req.params.id);
-  const comments = await Comment.findAll({ where: { articleId: article } });
-  // console.log(comments)
+  const comments = await Comment.findAll({ where: { articleId: req.params.id } });
   res.render("article", { article, comments });
 }
 
