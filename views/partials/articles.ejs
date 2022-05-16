@@ -1,13 +1,11 @@
-<% for (let i=0; i <= 99; i++) {%>
+<% %> <% for (let i = 0; i <= 10; i++ ) {%>
 <div class="post-preview">
   <a href="http://localhost:3000/articulos/<%- i %>">
     <h2 class="post-title"><%= articles[i].title %></h2>
-    <h3 class="post-subtitle">
-      Agregar subtitulo o preview Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
-      nisi?
-    </h3>
+    <p class="post-subtitle"><%= articles[i].content %></p>
+    <!-- contenido de artículo recortado -->
     <!--Necesitamos insertar parte del texto con un maximo de palabras -->
-    <img src="<%= articles[i].img %>" alt="" />
+    <img src="<%= articles[i].img %>" alt="" id="imagehome" />
   </a>
   <p class="post-meta">
     Posted by
