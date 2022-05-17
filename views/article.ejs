@@ -51,16 +51,15 @@
     <!-- Page Header-->
     <%- include('partials/header') %>
     <!-- Main Content-->
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
+    <div class="container">
+      <div class="">
+        <div class="">
           <!-- Post preview-->
           <div class="post-preview">
-            <h2 class="post-title"><%= article.title %></h2>
+            <h2 class="post-title fs-1 mb-4"><%= article.title %></h2>
+            <img class="mt-3" src="<%= article.img %>" alt="" id="imghome" />
             <p class="post-subtitle"><%= article.content %></p>
-            <!-- contenido de artículo recortado -->
-            <!--Necesitamos insertar parte del texto con un maximo de palabras -->
-            <img src="<%= article.img %>" alt="" id="imghome" />
+
             <p class="post-meta">
               Posted by
               <a href="#!"><%= article.userId %></a>
