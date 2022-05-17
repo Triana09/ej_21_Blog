@@ -41,7 +41,7 @@
         <div class="card mb-3 shadow">
           <h5 class="card-header">Editar Artículo: <%= article.id %></h5>
           <div class="card-body">
-            <form action="/admin" method="post">
+            <form action="/admin/editar/<%= article.id %>" method="post">
               <div class="mb-3">
                 <label for="nombreInput" class="form-label">Titulo</label>
                 <input
@@ -64,8 +64,8 @@
                   aria-label="With textarea"
                   style="min-height: 160px"
                 >
-<%= article.content %></textarea
-                >
+                <%= article.content %>
+                </textarea>
               </div>
               <div class="mb-3">
                 <label for="ageInput" class="form-label">Url de imagen</label>
@@ -94,7 +94,7 @@
             </form>
           </div>
         </div>
-        <a href="http://localhost:3000/admin">Volver</a>
+        <a href="/admin">Volver</a>
       </div>
     </div>
     <script
