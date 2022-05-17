@@ -20,8 +20,8 @@ async function addArticle(req, res) {
 }
 
 async function showEditArt(req, res) {
-  const articles = await Article.findAll();
-  res.render("edit", { article: articles[req.params.id - 1] });
+  const article = await Article.findByPk(req.params.id);
+  res.render("edit", { article: article });
 }
 async function editArticle(req, res) {
   const editArticle = await Article.update(
