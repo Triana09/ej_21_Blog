@@ -14,6 +14,16 @@ async function show(req, res) {
   res.render("article", { article, comments, options });
 }
 
+async function postComment(req, res) {
+  console.log(req.body);
+  const newComment = await Comment.create({
+    content: req.body.contentComment,
+    articleId: req.params.id,
+    creationDate: Date.now(),
+  });
+  res.redirect("/article/" + req.params.id);
+}
+
 // Show the form for creating a new resource
 async function create(req, res) {
   sendEmail();
@@ -37,6 +47,7 @@ async function destroy(req, res) {}
 module.exports = {
   index,
   show,
+  postComment,
   create,
   store,
   edit,

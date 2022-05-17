@@ -11,6 +11,8 @@ publicRouter.get("/home/", pagesController.showHome);
 
 publicRouter.get("/article/:id", articleController.show);
 
+publicRouter.post("/article/:id", articleController.postComment);
+
 publicRouter.get("/about", pagesController.showAboutUs);
 
 publicRouter.get("/api/articles", pagesController.showJson);

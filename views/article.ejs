@@ -77,6 +77,20 @@
             <hr />
           </div>
           <% } %>
+          <form action="/article/<%= article.id %>" method="post">
+            <div class="mb-3">
+              <label for="contentComment" class="form-label">Escribir un comentario:</label>
+              <textarea
+                name="contentComment"
+                type="text"
+                class="form-control"
+                id="contentComment"
+                placeholder="Ingrese contenido..."
+                aria-label="With textarea"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Enviar</button>
+          </form>
         </div>
       </div>
     </div>
