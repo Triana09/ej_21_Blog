@@ -11598,14 +11598,14 @@ header.masthead .post-heading .meta a {
   }
 }
 
-#imghome{
- max-width: 33rem;
- height: auto;
+#imghome {
+  max-width: 33rem;
+  height: auto;
 }
 
 /* Agregado manualmente */
 
-.post-subtitle {
+.post-delimited {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
