@@ -15,7 +15,7 @@ publicRouter.get("/about", (req, res) => {
   res.render("aboutUs");
 });
 
-publicRouter.get("/api/articulos", pagesController.showJson);
+publicRouter.get("/api/articles", pagesController.showJson);
 
 publicRouter.get("/contact", (req, res) => {
   res.render("contact");
