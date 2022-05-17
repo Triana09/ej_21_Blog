@@ -10,6 +10,9 @@ module.exports = (sequelize, Model, DataTypes) => {
       },
       content: {
         type: DataTypes.TEXT,
+        validate: {
+          len: [1, 300],
+        },
       },
       creationDate: {
         type: DataTypes.DATE,

@@ -36,15 +36,16 @@
   </head>
 
   <body>
-    <div class="all d-flex justify-content-center align-items-center">
+    <div class="all d-flex flex-column justify-content-center align-items-center">
       <div class="container">
         <div class="card mb-3 shadow">
           <h5 class="card-header">Editar Artículo: <%= article.id %></h5>
           <div class="card-body">
             <form action="/admin/editar/<%= article.id %>" method="post">
               <div class="mb-3">
-                <label for="nombreInput" class="form-label">Titulo</label>
+                <label for="titleNewArt" class="form-label">Titulo</label>
                 <input
+                  required
                   name="titleNewArt"
                   type="text"
                   class="form-control"
@@ -54,8 +55,9 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="apellidoInput" class="form-label">Contenido</label>
+                <label for="contentNewArt" class="form-label">Contenido</label>
                 <textarea
+                  required
                   name="contentNewArt"
                   type="text"
                   class="form-control"
@@ -68,8 +70,9 @@
                 >
               </div>
               <div class="mb-3">
-                <label for="ageInput" class="form-label">Url de imagen</label>
+                <label for="imgNewArt" class="form-label">Url de imagen</label>
                 <input
+                  required
                   name="imgNewArt"
                   type="text"
                   class="form-control"
@@ -79,8 +82,9 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="ageInput" class="form-label">Id del autor/usuario</label>
+                <label for="userId_NewArt" class="form-label">Id del autor/usuario</label>
                 <input
+                  required
                   name="userId_NewArt"
                   type="text"
                   class="form-control"
@@ -95,6 +99,13 @@
           </div>
         </div>
         <a href="/admin">Volver</a>
+      </div>
+      <% if(typeof validaciones != 'undefined') { %> <% validaciones.forEach((validacion)=>{ %>
+        <div class="alert alert-warning dismissible fade show" role="aler">
+          <strong><%= validacion.msg %> </strong>
+          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+        </div>
+        <% }) %> <% } %>
       </div>
     </div>
     <script
