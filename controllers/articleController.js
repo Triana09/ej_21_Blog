@@ -15,7 +15,6 @@ async function show(req, res) {
 }
 
 async function postComment(req, res) {
-  console.log(req.body);
   const newComment = await Comment.create({
     content: req.body.contentComment,
     articleId: req.params.id,
