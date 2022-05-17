@@ -7,9 +7,9 @@ faker.locale = "es";
 module.exports = async () => {
   const comments = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 700; i++) {
     comments.push({
-      content: faker.lorem.paragraphs(10),
+      content: faker.lorem.paragraphs(1),
       creationDate: faker.date.between("2020-01-01", "2022-01-01"),
       userId: rdm(1, 50),
       articleId: rdm(1, 100),

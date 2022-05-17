@@ -68,12 +68,14 @@
             </p>
           </div>
         </div>
-        <div>
-          <h3>Comentarios</h3>
+        <div class="com-container container my-3">
+          <h3 class="mt-5 mb-3">Comentarios</h3>
           <% for (comment of comments) { %>
-          <div>
-            <p class="post-subtitle"><%= comment.content %></p>
-            <p class="post-meta">Posted on: <%= comment.creationDate %></p>
+          <div class="my-3">
+            <hr />
+            <p class="post-subtitle my-0"><%= comment.content %></p>
+            <p class="text-muted fs-6 my-0">Posted on: <%= comment.creationDate %></p>
+            <hr />
           </div>
           <% } %>
         </div>
