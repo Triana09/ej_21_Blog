@@ -12,13 +12,13 @@ adminRouter.get("/crear", (req, res) => {
 });
 adminRouter.post(
   "/",
-  [
-    body("titleNewArt", "Ingrese un titulo válido").exists().isLength({ min: 1 }, { max: 50 }),
-    body("contentNewArt", "Ingrese un contenido válido")
-      .exists()
-      .isLength({ min: 10 }, { max: 2000 }),
-    body("userId_NewArt", "Ingrese un valor numérico").exists().isNumeric(),
-  ],
+  // [
+  //   body("titleNewArt", "Ingrese un titulo válido").exists().isLength({ min: 1 }, { max: 50 }),
+  //   body("contentNewArt", "Ingrese un contenido válido")
+  //     .exists()
+  //     .isLength({ min: 10 }, { max: 2000 }),
+  //   body("userId_NewArt", "Ingrese un valor numérico").exists().isNumeric(),
+  // ],
   adminController.addArticle,
 );
 

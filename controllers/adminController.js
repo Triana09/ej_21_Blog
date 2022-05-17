@@ -2,6 +2,7 @@ const { Article } = require("../models");
 const confirmationEmail = require("../email");
 const { User } = require("../models");
 const { validationResult } = require("express-validator");
+const formidable = require("formidable");
 
 async function showHomeAdmin(req, res) {
   const options = { baseUrl: req.baseUrl };
@@ -10,12 +11,21 @@ async function showHomeAdmin(req, res) {
 }
 
 async function addArticle(req, res) {
+  const form = formidable({
+    keepExtensions: true,
+    multiples: true,
+    uploadDir: __dirname + "/../public/img",
+    keepExtensions: true,
+  });
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const valores = req.body;
     const validaciones = errors.array();
     res.render("add", { validaciones: validaciones, valores: valores });
   } else {
+    console.log(1, "probando");
+
     const newArticles = await Article.create({
       title: req.body.titleNewArt,
       img: req.body.imgNewArt,
@@ -23,8 +33,16 @@ async function addArticle(req, res) {
       userId: req.body.userId_NewArt,
       creationDate: Date.now(),
     });
-    confirmationEmail();
-    res.redirect("/admin");
+
+    form.parse(req, (err, fields, files) => {
+      // Hacer algo con fields y files...
+      console.log(2);
+      console.log(2.1, err);
+      console.log(2.2, fields);
+      console.log(2.3, files);
+      confirmationEmail();
+      res.redirect("/admin");
+    });
   }
 }
 
