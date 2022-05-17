@@ -41,48 +41,50 @@
       </div>
     </header>
     <%- include('partials/navbarAdmin') %>
-    <!-- Main Content-->
+    <!-- Main Content -->
     <div class="container px-4 px-lg-5">
-        <div class="bntNuevo-Container mb-3 d-flex justify-content-between align-items-center">
-            <h1 class="text-dark">Lista de Articulos</h1>
-            <a href="http://localhost:3000/admin/crear">
-              <button type="button" class="btn btn-success btn-sm">Nuevo Articulo</button>
-            </a>
-          </div>
-        <section class="table-container border border-3 rounded border-light p-2">
-            <table class="table table-striped bg-light container">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Acciones</th>
-                </tr>
-              </thead>
-    
-              <tbody id="tableBody">            
-                <% for(article of articles){%>
-                  <tr class="usuario">
-                    <th scope="row"><%=article.id%></th>                
-                    <td><%=article.title%></td>
-                    <td><%=`${article.userId} (${article.user.firstname} ${article.user.lastname})`%></td>
-                    <td>
-                      <a href="http://localhost:3000/admin/editar/<%- article.id %>">
-                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                      </a>
-    
-                      <form class="d-inline" action="/admin/eliminar/<%- article.id %>" method="post">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                      </form>                    
-                        
-                    </td>
-                  </tr
-                <%} %>            
-              </tbody>
-            </table>
+      <div class="bntNuevo-Container mb-3 d-flex justify-content-between align-items-center">
+        <h1 class="text-dark">Lista de Articulos</h1>
+        <a href="http://localhost:3000/admin/crear">
+          <button type="button" class="btn btn-success btn-sm">Nuevo Articulo</button>
+        </a>
+      </div>
+      <section class="table-container border border-3 rounded border-light p-2">
+        <table class="table table-striped bg-light container">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody id="tableBody">
+            <% for(article of articles) { %>
+            <tr class="usuario">
+              <th scope="row"><%=article.id%></th>
+              <td><%= article.title %></td>
+              <td>
+                <%= `${article.userId} (${article.user.firstname} ${article.user.lastname})` %>
+              </td>
+              <td>
+                <a href="http://localhost:3000/admin/editar/<%- article.id %>">
+                  <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                </a>
+
+                <form class="d-inline" action="/admin/eliminar/<%- article.id %>" method="post">
+                  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </section>
     </div>
 
-    <!-- Footer-->
+    <!-- Footer -->
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
