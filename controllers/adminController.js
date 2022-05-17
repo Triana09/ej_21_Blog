@@ -35,19 +35,6 @@ async function editArticle(req, res) {
       where: { id: req.params.id },
     },
   );
-  // Article.findByPk(req.params.id).then((article) => {
-  //   article
-  //     .update({
-  //       title: req.body.titleNewArt,
-  //       img: req.body.imgNewArt,
-  //       content: req.body.contentNewArt,
-  //       userId: req.body.userId_NewArt,
-  //     })
-  //     .then((article) => {
-  //       console.log(article);
-  //     });
-  // });
-
   res.redirect("/admin");
 }
 
