@@ -11,14 +11,10 @@ publicRouter.get("/home/", pagesController.showHome);
 
 publicRouter.get("/article/:id", articleController.show);
 
-publicRouter.get("/about", (req, res) => {
-  res.render("aboutUs");
-});
+publicRouter.get("/about", pagesController.showAboutUs);
 
 publicRouter.get("/api/articles", pagesController.showJson);
 
-publicRouter.get("/contact", (req, res) => {
-  res.render("contact");
-});
+publicRouter.get("/contact", pagesController.showContact);
 
 module.exports = publicRouter;
