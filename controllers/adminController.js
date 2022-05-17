@@ -13,6 +13,7 @@ async function addArticle(req, res) {
     img: req.body.imgNewArt,
     content: req.body.contentNewArt,
     userId: req.body.userId_NewArt,
+    creationDate: Date.now(),
   });
   confirmationEmail();
   res.redirect("/admin");
@@ -20,33 +21,32 @@ async function addArticle(req, res) {
 
 async function showEditArt(req, res) {
   const articles = await Article.findAll();
-  console.log(articles[req.params.id]);
   res.render("edit", { article: articles[req.params.id - 1] });
 }
 async function editArticle(req, res) {
-  // const editArticle = await Article.update(
-  //   {
-  //     title: req.body.titleNewArt,
-  //     img: req.body.imgNewArt,
-  //     content: req.body.contentNewArt,
-  //     userId: req.body.userId_NewArt,
-  //   },
-  //   {
-  //     where: { id: 2 },
-  //   },
-  // );
-  Article.findByPk(req.params.id).then((article) => {
-    article
-      .update({
-        title: req.body.titleNewArt,
-        img: req.body.imgNewArt,
-        content: req.body.contentNewArt,
-        userId: req.body.userId_NewArt,
-      })
-      .then((article) => {
-        console.log(article);
-      });
-  });
+  const editArticle = await Article.update(
+    {
+      title: req.body.titleNewArt,
+      img: req.body.imgNewArt,
+      content: req.body.contentNewArt,
+      userId: req.body.userId_NewArt,
+    },
+    {
+      where: { id: req.params.id },
+    },
+  );
+  // Article.findByPk(req.params.id).then((article) => {
+  //   article
+  //     .update({
+  //       title: req.body.titleNewArt,
+  //       img: req.body.imgNewArt,
+  //       content: req.body.contentNewArt,
+  //       userId: req.body.userId_NewArt,
+  //     })
+  //     .then((article) => {
+  //       console.log(article);
+  //     });
+  // });
 
   res.redirect("/admin");
 }
