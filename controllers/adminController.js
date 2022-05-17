@@ -4,8 +4,9 @@ const { User } = require("../models");
 const { validationResult } = require("express-validator");
 
 async function showHomeAdmin(req, res) {
+  const options = { baseUrl: req.baseUrl };
   const articles = await Article.findAll({ include: User });
-  res.render("admin", { articles });
+  res.render("admin", { articles, options });
 }
 
 async function addArticle(req, res) {
