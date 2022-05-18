@@ -24,22 +24,16 @@ async function addArticle(req, res) {
     const validaciones = errors.array();
     res.render("add", { validaciones: validaciones, valores: valores });
   } else {
-    console.log(1, "probando");
+    form.parse(req, async (err, fields, files) => {
+      const newArticles = await Article.create({
+        title: fields.titleNewArt,
+        img: files.imgFileNewArt.filepath,
+        content: fields.contentNewArt,
+        userId: fields.userId_NewArt,
 
-    const newArticles = await Article.create({
-      title: req.body.titleNewArt,
-      img: req.body.imgNewArt,
-      content: req.body.contentNewArt,
-      userId: req.body.userId_NewArt,
-      creationDate: Date.now(),
-    });
+        creationDate: Date.now(),
+      });
 
-    form.parse(req, (err, fields, files) => {
-      // Hacer algo con fields y files...
-      console.log(2);
-      console.log(2.1, err);
-      console.log(2.2, fields);
-      console.log(2.3, files);
       confirmationEmail();
       res.redirect("/admin");
     });

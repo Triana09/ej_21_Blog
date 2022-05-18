@@ -1,3 +1,4 @@
+const sequelize = require("sequelize");
 const { Article } = require("../models");
 const { User } = require("../models");
 const { Comment } = require("../models");
@@ -5,7 +6,10 @@ const { Comment } = require("../models");
 async function showHome(req, res) {
   const options = { baseUrl: req.baseUrl };
 
-  const articles = await Article.findAll({ include: User }, { order: [["creationDate", "DESC"]] });
+  const articles = await Article.findAll(
+    { include: User },
+    { order: sequelize.literal("creationDate DESC") },
+  );
   const users = await User.findAll();
   const comments = await Comment.findAll();
   res.render("home", { articles, users, comments, options });
