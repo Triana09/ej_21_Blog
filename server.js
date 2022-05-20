@@ -23,7 +23,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-dbInitialSetup(); // Crea tablas e inserta datos de prueba.
+// dbInitialSetup(); // Crea tablas e inserta datos de prueba.
 
 // crear url api
 

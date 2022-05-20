@@ -16,5 +16,5 @@ module.exports = async () => {
     });
   }
   await Comment.bulkCreate(comments);
-  console.log("[Database] Se corrió el seeder de Users.");
+  console.log("[Database] Se corrió el seeder de Comments.");
 };
