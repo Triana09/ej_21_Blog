@@ -3,6 +3,7 @@ const confirmationEmail = require("../email");
 const { User } = require("../models");
 const { validationResult } = require("express-validator");
 const formidable = require("formidable");
+const express = require("express");
 
 async function showHomeAdmin(req, res) {
   const options = { baseUrl: req.baseUrl };
@@ -42,7 +43,11 @@ async function addArticle(req, res) {
 
 async function showEditArt(req, res) {
   const article = await Article.findByPk(req.params.id);
-  res.render("edit", { article: article });
+  if (article.userId === req.user.id) {
+    res.render("edit", { article: article });
+  } else {
+    res.redirect("/admin");
+  }
 }
 async function editArticle(req, res) {
   const errors = validationResult(req);

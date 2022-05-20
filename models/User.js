@@ -32,9 +32,11 @@ module.exports = (sequelize, Model, DataTypes) => {
         beforeBulkCreate: async (users, options) => {
           console.log(users);
           for (const user of users) {
-            const salt = await bcrypt.genSalt(6);
-            user.password = await bcrypt.hash(user.password, salt);
+            user.password = await bcrypt.hash(user.password, 10);
           }
+        },
+        beforeCreate: async (user, options) => {
+          user.password = await bcrypt.hash(user.password, 10);
         },
       },
     },

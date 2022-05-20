@@ -2,6 +2,7 @@ const express = require("express");
 const publicRouter = express.Router();
 const pagesController = require("../controllers/pagesController");
 const articleController = require("../controllers/articleController");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
 // Rutas Públicas:
 // ...
@@ -11,7 +12,7 @@ publicRouter.get("/home/", pagesController.showHome);
 
 publicRouter.get("/article/:id", articleController.show);
 
-publicRouter.post("/article/:id", articleController.postComment);
+publicRouter.post("/article/:id", ensureAuthenticated, articleController.postComment);
 
 publicRouter.get("/about", pagesController.showAboutUs);
 

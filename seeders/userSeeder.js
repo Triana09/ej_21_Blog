@@ -11,7 +11,7 @@ module.exports = async () => {
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
       email: `${faker.name.firstName() + faker.name.lastName()}@gmail.com`,
-      password: faker.internet.password(10),
+      password: "123",
     });
   }
   await User.bulkCreate(users);

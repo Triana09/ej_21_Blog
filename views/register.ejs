@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Login</title>
+    <title>Register</title>
     <!-- Google Analytics -->
     <script>
       (function (i, s, o, g, r, a, m) {
@@ -49,7 +49,27 @@
   <body>
     <!-- Main Content-->
     <div style="min-height: 100vh" class="container d-flex justify-content-center pt-4">
-      <form action="/login" method="post">
+      <form action="/registro" method="post">
+        <div class="mb-3">
+          <label for="firstname" class="form-label">First name</label>
+          <input
+            name="firstname"
+            type="text"
+            class="form-control"
+            id="firstname"
+            placeholder="Firstname..."
+          />
+        </div>
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Last name</label>
+          <input
+            name="lastname"
+            type="text"
+            class="form-control"
+            id="lastname"
+            placeholder="Lastname..."
+          />
+        </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
           <input
@@ -64,7 +84,8 @@
           <label for="password" class="form-label">Password</label>
           <input name="password" type="password" class="form-control" id="password" />
         </div>
-        <button type="submit" class="btn btn-success">Login</button>
+
+        <button type="submit" class="btn btn-success">Register</button>
       </form>
     </div>
 

@@ -12,8 +12,8 @@ const sequelize = new Sequelize(
 );
 
 const User = require("./User")(sequelize, Model, DataTypes);
-const Comment = require("./Comment")(sequelize, Model, DataTypes);
 const Article = require("./Article")(sequelize, Model, DataTypes);
+const Comment = require("./Comment")(sequelize, Model, DataTypes);
 
 // Luego de definir los modelos, se pueden establecer relaciones
 // entre los mismos...
