@@ -7,7 +7,8 @@ faker.locale = "es";
 module.exports = async () => {
   const users = [];
 
-  for (let i = 0; i < 50; i++) {
+  // ! revisar la cantidad de usaurios creados y que coincida con el contador de usuarios en el articleSeeder
+  for (let i = 0; i < 10; i++) {
     const hash = await bcrypt.hash("a", 10);
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
@@ -16,6 +17,7 @@ module.exports = async () => {
       lastname: lastName,
       email: `${firstName + lastName}@gmail.com`,
       password: hash,
+      roleId: Math.ceil(Math.random() * 4),
     });
   }
   await User.bulkCreate(users);

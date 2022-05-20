@@ -13,7 +13,7 @@ module.exports = async () => {
       title: faker.lorem.sentence(5),
       img: "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png",
       content: faker.lorem.paragraphs(),
-      userId: rdm(1, 50),
+      userId: Math.ceil(Math.random() * 10), // ! cantidad de usaurios creados y contador de usuarios en el articleSeeder deben coincidir
       creationDate: faker.date.between("2020-01-01", "2022-01-01"),
     });
   }
