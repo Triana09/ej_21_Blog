@@ -14,7 +14,7 @@ loginRoute.post(
   "/",
   passport.authenticate("local", { failureRedirect: "/login", failureMessage: true }),
   function (req, res) {
-    res.redirect("/admin");
+    res.redirect("/");
   },
 );
 

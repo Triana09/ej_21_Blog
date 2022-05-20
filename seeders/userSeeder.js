@@ -6,10 +6,17 @@ const rdm = require("./random");
 faker.locale = "es";
 // capaz podemos require la table de users y agregarlo random
 module.exports = async () => {
+  const hash = await bcrypt.hash("a", 10);
+  const testingUser = await User.create({
+    firstname: "Tri",
+    lastname: "Misa",
+    email: "triana2109@gmail.com",
+    password: hash,
+    roleId: 1,
+  });
   const users = [];
 
-  for (let i = 0; i < 50; i++) {
-    const hash = await bcrypt.hash("a", 10);
+  for (let i = 0; i < 49; i++) {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     users.push({

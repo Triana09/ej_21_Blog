@@ -6,6 +6,7 @@ const formidable = require("formidable");
 const express = require("express");
 
 async function showHomeAdmin(req, res) {
+  console.log(req.user);
   const options = { baseUrl: req.baseUrl };
   const articles = await Article.findAll({ include: User });
   res.render("admin", { articles, options });
@@ -43,6 +44,7 @@ async function addArticle(req, res) {
 
 async function showEditArt(req, res) {
   const article = await Article.findByPk(req.params.id);
+
   if (article.userId === req.user.id) {
     res.render("edit", { article: article });
   } else {
