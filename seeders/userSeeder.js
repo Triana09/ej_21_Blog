@@ -1,5 +1,6 @@
 const { faker } = require("@faker-js/faker");
 const { User } = require("../models");
+const bcrypt = require("bcryptjs/dist/bcrypt");
 
 faker.locale = "es";
 // capaz podemos require la table de users y agregarlo random
@@ -7,11 +8,14 @@ module.exports = async () => {
   const users = [];
 
   for (let i = 0; i < 50; i++) {
+    const hash = await bcrypt.hash("a", 10);
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
     users.push({
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      email: `${faker.name.firstName() + faker.name.lastName()}@gmail.com`,
-      password: "123",
+      firstname: firstName,
+      lastname: lastName,
+      email: `${firstName + lastName}@gmail.com`,
+      password: hash,
     });
   }
   await User.bulkCreate(users);
