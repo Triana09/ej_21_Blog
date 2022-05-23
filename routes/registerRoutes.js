@@ -1,6 +1,7 @@
 const express = require("express");
 const { User } = require("../models");
 const registerRoute = express.Router();
+const bcrypt = require("bcryptjs/dist/bcrypt");
 
 // register get
 registerRoute.get("/", (req, res) => {
@@ -15,13 +16,15 @@ registerRoute.post("/", async (req, res) => {
   if (user) {
     res.redirect("/login");
   } else {
+    const hash = await bcrypt.hash(req.body.password, 10);
     const newUser = await User.create({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      password: req.body.password,
+      password: hash,
+      roleId: 4,
     });
-    res.redirect("/admin");
+    res.redirect("/home");
   }
 });
 
