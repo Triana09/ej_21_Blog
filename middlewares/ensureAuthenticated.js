@@ -16,7 +16,6 @@ module.exports = (req, res, next) => {
     if (req.user.roleId === 4) {
       res.redirect("/errorPage");
     } else {
-      console.log("ies");
       return next();
     }
   } else {

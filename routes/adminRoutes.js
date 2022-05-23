@@ -39,4 +39,7 @@ adminRouter.post(
 
 adminRouter.post("/eliminar/:id", adminController.deleteArticle);
 
+adminRouter.get("/users", adminController.showUsers);
+adminRouter.post("/users/eliminar/:id", adminController.deleteUser);
+
 module.exports = adminRouter;

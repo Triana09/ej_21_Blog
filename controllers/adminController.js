@@ -1,12 +1,12 @@
 const { Article } = require("../models");
 const confirmationEmail = require("../email");
 const { User } = require("../models");
+const { Role } = require("../models");
 const { validationResult } = require("express-validator");
 const formidable = require("formidable");
 const express = require("express");
 
 async function showHomeAdmin(req, res) {
-  console.log(req.user);
   const options = { baseUrl: req.baseUrl };
   const articles = await Article.findAll({ include: User });
   res.render("admin", { articles, options });
@@ -31,7 +31,7 @@ async function addArticle(req, res) {
         title: fields.titleNewArt,
         img: files.imgFileNewArt.filepath,
         content: fields.contentNewArt,
-        userId: req.user.roleId,
+        userId: req.user.id,
         creationDate: Date.now(),
       });
 
@@ -43,9 +43,7 @@ async function addArticle(req, res) {
 
 async function showEditArt(req, res) {
   const article = await Article.findByPk(req.params.id);
-  if (article.userId === req.user.id) {
-    res.render("edit", { article: article });
-  } else if (req.user.roleId < 3) {
+  if (article.userId === req.user.id || req.user.roleId < 3) {
     res.render("edit", { article: article });
   } else {
     res.redirect("/admin");
@@ -76,14 +74,7 @@ async function editArticle(req, res) {
 
 async function deleteArticle(req, res) {
   const article = await Article.findByPk(req.params.id);
-  if (article.userId === req.user.id) {
-    const articleGone = await Article.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.redirect("/admin");
-  } else if (req.user.roleId === 1) {
+  if (article.userId === req.user.id || req.user.roleId === 1) {
     const articleGone = await Article.destroy({
       where: {
         id: req.params.id,
@@ -95,10 +86,49 @@ async function deleteArticle(req, res) {
   }
 }
 
+// users controllers
+async function showUsers(req, res) {
+  const options = { baseUrl: req.baseUrl };
+  const users = await User.findAll({ include: Role });
+  res.render("usersAll", { users, options });
+}
+
+async function deleteUser(req, res) {
+  if (req.params.id == req.user.id) {
+    res.redirect("/logout");
+    const artGone = await Article.destroy({
+      where: {
+        userId: req.params.id,
+      },
+    });
+    const userGone = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+  } else if (req.user.roleId === 1) {
+    const artGone = await Article.destroy({
+      where: {
+        userId: req.params.id,
+      },
+    });
+    const userGone = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/admin/users");
+  } else {
+    res.redirect("/admin/users");
+  }
+}
+
 module.exports = {
   showHomeAdmin,
   addArticle,
   editArticle,
   deleteArticle,
   showEditArt,
+  showUsers,
+  deleteUser,
 };
