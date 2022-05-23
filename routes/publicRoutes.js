@@ -14,6 +14,8 @@ publicRouter.get("/article/:id", articleController.show);
 
 publicRouter.post("/article/:id", ensureAuthenticated, articleController.postComment);
 
+publicRouter.post("/comentario/:id", articleController.deleteComment);
+
 publicRouter.get("/about", pagesController.showAboutUs);
 
 publicRouter.get("/api/articles", pagesController.showJson);

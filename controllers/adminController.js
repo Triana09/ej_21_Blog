@@ -31,8 +31,7 @@ async function addArticle(req, res) {
         title: fields.titleNewArt,
         img: files.imgFileNewArt.filepath,
         content: fields.contentNewArt,
-        userId: fields.userId_NewArt,
-
+        userId: req.user.roleId,
         creationDate: Date.now(),
       });
 
@@ -44,8 +43,9 @@ async function addArticle(req, res) {
 
 async function showEditArt(req, res) {
   const article = await Article.findByPk(req.params.id);
-
   if (article.userId === req.user.id) {
+    res.render("edit", { article: article });
+  } else if (req.user.roleId < 3) {
     res.render("edit", { article: article });
   } else {
     res.redirect("/admin");
@@ -75,12 +75,24 @@ async function editArticle(req, res) {
 }
 
 async function deleteArticle(req, res) {
-  const articleGone = await Article.destroy({
-    where: {
-      id: req.params.id,
-    },
-  });
-  res.redirect("/admin");
+  const article = await Article.findByPk(req.params.id);
+  if (article.userId === req.user.id) {
+    const articleGone = await Article.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/admin");
+  } else if (req.user.roleId === 1) {
+    const articleGone = await Article.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/admin");
+  } else {
+    res.redirect("/admin");
+  }
 }
 
 module.exports = {

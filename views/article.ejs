@@ -74,10 +74,13 @@
             <hr />
             <p class="post-subtitle my-0"><%= comment.content %></p>
             <em><p class="text-muted fs-6 my-0">Posted on: <%= comment.creationDate %></p></em>
+            <form action="/comentario/<%= comment.id %> " method="post">
+              <button type="submit" class="btn btn-outline-danger">Danger</button>
+            </form>
             <hr />
           </div>
           <% } %>
-          <form action="/article/<%= article.id %>" method="post">
+          <form action="/article/<%- article.id %>" method="post">
             <div class="mb-3">
               <label for="contentComment" class="form-label">Escribir un comentario:</label>
               <textarea

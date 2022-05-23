@@ -8,7 +8,6 @@ async function index(req, res) {}
 // Display the specified resource.
 async function show(req, res) {
   const options = { baseUrl: req.baseUrl };
-
   const article = await Article.findByPk(req.params.id);
   const comments = await Comment.findAll({ where: { articleId: req.params.id } });
   res.render("article", { article, comments, options });
@@ -21,6 +20,20 @@ async function postComment(req, res) {
     creationDate: Date.now(),
   });
   res.redirect("/article/" + req.params.id);
+}
+
+async function deleteComment(req, res) {
+  const comment = await Comment.findByPk(req.params.id);
+  if (req.user.roleId < 3) {
+    const gone = await Comment.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/article/" + comment.articleId);
+  } else {
+    res.redirect("/article/" + comment.articleId);
+  }
 }
 
 // Show the form for creating a new resource
@@ -52,4 +65,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  deleteComment,
 };
