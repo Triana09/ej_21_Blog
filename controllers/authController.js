@@ -19,6 +19,7 @@ async function postRegister(req, res) {
       lastname: req.body.lastname,
       email: req.body.email,
       password: hash,
+      roleId: 1,
     });
     res.redirect("/admin");
   }
