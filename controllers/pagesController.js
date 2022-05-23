@@ -1,7 +1,9 @@
+const { es } = require("date-fns/locale");
 const sequelize = require("sequelize");
 const { Article } = require("../models");
 const { User } = require("../models");
 const { Comment } = require("../models");
+const { Role } = require("../models");
 
 async function showHome(req, res) {
   const options = { baseUrl: req.baseUrl };
@@ -13,6 +15,12 @@ async function showHome(req, res) {
   const users = await User.findAll();
   const comments = await Comment.findAll();
   res.render("home", { articles, users, comments, options });
+}
+
+async function showPerfil(req, res) {
+  const user = await User.findByPk(req.params.id, { include: Role });
+  console.log(user.roles);
+  res.render("perfil", { user });
 }
 
 async function redirectToHome(req, res) {
@@ -43,4 +51,5 @@ module.exports = {
   showContact,
   showAboutUs,
   showJson,
+  showPerfil,
 };

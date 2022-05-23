@@ -14,7 +14,7 @@
 module.exports = (req, res, next) => {
   if (req.isAuthenticated()) {
     if (req.user.roleId === 4) {
-      res.redirect("/errorPage");
+      res.redirect("/error");
     } else {
       return next();
     }

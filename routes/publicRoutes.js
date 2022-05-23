@@ -10,6 +10,8 @@ publicRouter.get("/", pagesController.redirectToHome);
 
 publicRouter.get("/home/", pagesController.showHome);
 
+publicRouter.get("/perfil/:id", ensureAuthenticated, pagesController.showPerfil);
+
 publicRouter.get("/article/:id", articleController.show);
 
 publicRouter.post("/article/:id", ensureAuthenticated, articleController.postComment);
@@ -21,5 +23,9 @@ publicRouter.get("/about", pagesController.showAboutUs);
 publicRouter.get("/api/articles", pagesController.showJson);
 
 publicRouter.get("/contact", pagesController.showContact);
+
+publicRouter.get("/error", (req, res) => {
+  res.render("errorPage");
+});
 
 module.exports = publicRouter;

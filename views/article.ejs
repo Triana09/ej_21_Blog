@@ -74,12 +74,14 @@
             <hr />
             <p class="post-subtitle my-0"><%= comment.content %></p>
             <em><p class="text-muted fs-6 my-0">Posted on: <%= comment.creationDate %></p></em>
+            <% if(rol < 3){ %>
             <form action="/comentario/<%= comment.id %> " method="post">
-              <button type="submit" class="btn btn-outline-danger">Danger</button>
+              <button type="submit" class="btn btn-outline-danger">Borrar comentario</button>
             </form>
+            <% } %>
             <hr />
           </div>
-          <% } %>
+          <% } %> <% if(checkLog){ %>
           <form action="/article/<%- article.id %>" method="post">
             <div class="mb-3">
               <label for="contentComment" class="form-label">Escribir un comentario:</label>
@@ -94,6 +96,15 @@
             </div>
             <button type="submit" class="btn btn-success">Enviar</button>
           </form>
+          <% }else{ %>
+          <hr />
+          <div class="my-3 d-flex align-items-center justify-content-between">
+            <h4 class="comment-logueate-h4">Logueate para dejar un comentario!!</h4>
+            <a href="/login">
+              <button type="button" class="btn btn-outline-dark">Log In</button>
+            </a>
+          </div>
+          <% } %>
         </div>
       </div>
     </div>

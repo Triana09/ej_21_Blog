@@ -10,7 +10,13 @@ async function show(req, res) {
   const options = { baseUrl: req.baseUrl };
   const article = await Article.findByPk(req.params.id);
   const comments = await Comment.findAll({ where: { articleId: req.params.id } });
-  res.render("article", { article, comments, options });
+
+  const checkLog = req.isAuthenticated();
+  let rol = 4;
+  if (req.isAuthenticated()) {
+    rol = req.user.roleId;
+  }
+  res.render("article", { article, comments, options, checkLog, rol });
 }
 
 async function postComment(req, res) {
@@ -41,29 +47,10 @@ async function create(req, res) {
   sendEmail();
 }
 
-// Store a newly created resource in storage.
-async function store(req, res) {}
-
-// Show the form for editing the specified resource.
-async function edit(req, res) {}
-
-// Update the specified resource in storage.
-async function update(req, res) {}
-
-// Remove the specified resource from storage.
-async function destroy(req, res) {}
-
-// Otros handlers...
-// ...
-
 module.exports = {
   index,
   show,
   postComment,
   create,
-  store,
-  edit,
-  update,
-  destroy,
   deleteComment,
 };
