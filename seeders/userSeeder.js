@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { faker } = require("@faker-js/faker");
 const { User } = require("../models");
 const bcrypt = require("bcryptjs/dist/bcrypt");
@@ -8,7 +9,7 @@ module.exports = async () => {
   const users = [];
 
   // ! revisar la cantidad de usaurios creados y que coincida con el contador de usuarios en el articleSeeder
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < process.env.DEV_SETTING_TOTALUSERS; i++) {
     const hash = await bcrypt.hash("a", 10);
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();

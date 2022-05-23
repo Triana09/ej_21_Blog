@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { faker } = require("@faker-js/faker");
 const { Comment } = require("../models");
 const rdm = require("./random");
@@ -13,6 +14,7 @@ module.exports = async () => {
       creationDate: faker.date.between("2020-01-01", "2022-01-01"),
       userId: rdm(1, 50),
       articleId: rdm(1, 100),
+      userId: Math.ceil(Math.random() * process.env.DEV_SETTING_TOTALUSERS), // ! cantidad de usaurios creados y contador de usuarios en el articleSeeder deben coincidir
     });
   }
   await Comment.bulkCreate(comments);
