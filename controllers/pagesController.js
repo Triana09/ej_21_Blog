@@ -1,8 +1,5 @@
 const sequelize = require("sequelize");
-const { Article } = require("../models");
-const { User } = require("../models");
-const { Comment } = require("../models");
-const { Role } = require("../models");
+const { Article, User, Comment } = require("../models");
 
 async function showHome(req, res) {
   const options = { baseUrl: req.baseUrl };
