@@ -42,12 +42,9 @@ async function addArticle(req, res) {
 
 async function showEditArt(req, res) {
   const article = await Article.findByPk(req.params.id);
-  if (article.userId === req.user.id) {
-    res.render("edit", { article: article });
-  } else {
-    res.redirect("/admin");
-  }
+  res.render("edit", { article: article });
 }
+
 async function editArticle(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
