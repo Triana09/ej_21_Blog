@@ -8,7 +8,7 @@ module.exports = async () => {
   const users = [];
 
   // ! revisar la cantidad de usaurios creados y que coincida con el contador de usuarios en el articleSeeder
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 9; i++) {
     const hash = await bcrypt.hash("a", 10);
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
@@ -20,6 +20,14 @@ module.exports = async () => {
       roleId: Math.ceil(Math.random() * 4),
     });
   }
+  const hash = await bcrypt.hash("admin", 10);
+  users.push({
+    firstname: "admin",
+    lastname: "admin",
+    email: `admin`,
+    password: hash,
+    roleId: 4,
+  });
   await User.bulkCreate(users);
   console.log("[Database] Se corrió el seeder de Users.");
 };
