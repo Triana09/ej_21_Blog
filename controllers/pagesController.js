@@ -2,6 +2,7 @@ const sequelize = require("sequelize");
 const { Article } = require("../models");
 const { User } = require("../models");
 const { Comment } = require("../models");
+const { Role } = require("../models");
 
 async function showHome(req, res) {
   const options = { baseUrl: req.baseUrl };
@@ -30,7 +31,9 @@ async function showAboutUs(req, res) {
 }
 
 async function showJson(req, res) {
-  const articles = await Article.findAll();
+  const articles = await Article.findAll({
+    include: User,
+  });
   res.json(articles);
 }
 

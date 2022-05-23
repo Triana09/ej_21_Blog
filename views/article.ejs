@@ -62,7 +62,7 @@
 
             <p class="post-meta">
               Posted by
-              <a href="#!"><%= article.userId %></a>
+              <a href="#!"><%= article.user.firstname %> <%= article.user.lastname %></a>
               on <%= article.createdAt %>
             </p>
           </div>
@@ -73,7 +73,13 @@
           <div class="my-3">
             <hr />
             <p class="post-subtitle my-0"><%= comment.content %></p>
-            <em><p class="text-muted fs-6 my-0">Posted on: <%= comment.creationDate %></p></em>
+            <em
+              ><p class="text-muted fs-6 my-0">
+                Posted by
+                <a href="#"><%= comment.user.firstname %> <%= comment.user.lastname %></a> on: <%=
+                comment.creationDate %>
+              </p></em
+            >
             <hr />
           </div>
           <% } %>

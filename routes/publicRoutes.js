@@ -10,7 +10,7 @@ publicRouter.get("/", pagesController.redirectToHome);
 
 publicRouter.get("/home/", pagesController.showHome);
 
-publicRouter.get("/article/:id", articleController.show);
+publicRouter.get("/article/:id", articleController.showArticle);
 
 publicRouter.post("/article/:id", ensureAuthenticated, articleController.postComment);
 
