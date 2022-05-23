@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs/dist/bcrypt");
 const express = require("express");
 const { User } = require("../models");
 
@@ -12,11 +13,12 @@ async function postRegister(req, res) {
   if (user) {
     res.redirect("/login");
   } else {
+    const hash = await bcrypt.hash(req.body.password, 10);
     const newUser = await User.create({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      password: req.body.password,
+      password: hash,
     });
     res.redirect("/admin");
   }
