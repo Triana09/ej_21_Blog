@@ -26,13 +26,6 @@ async function postRegister(req, res) {
 }
 
 async function showLogin(req, res) {
-  // console.log(3, res.locals);
-  // if (res.locals.msg !== null) {
-  //   const redirectMsg = res.local.msg;
-  // } else {
-  //   const redirectMsg = "";
-  // }
-
   res.render("login");
 }
 
