@@ -1,6 +1,6 @@
 const publicRoutes = require("./publicRoutes");
 const adminRoutes = require("./adminRoutes");
-const registerRoute = require("./registerRoutes");
+const registerRoute = require("./authRoutes");
 const loginRoute = require("./loginRoutes");
 const logoutRoute = require("./logoutRoutes");
 

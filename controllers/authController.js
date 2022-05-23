@@ -1,14 +1,11 @@
 const express = require("express");
 const { User } = require("../models");
-const registerRoute = express.Router();
 
-// register get
-registerRoute.get("/", (req, res) => {
+async function showRegister(req, res) {
   res.render("register");
-});
+}
 
-// register post
-registerRoute.post("/", async (req, res) => {
+async function postRegister(req, res) {
   const user = await User.findOne({
     where: { email: req.body.email },
   });
@@ -23,6 +20,9 @@ registerRoute.post("/", async (req, res) => {
     });
     res.redirect("/admin");
   }
-});
+}
 
-module.exports = registerRoute;
+module.exports = {
+  showRegister,
+  postRegister,
+};
