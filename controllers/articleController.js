@@ -25,7 +25,6 @@ async function postComment(req, res) {
     creationDate: Date.now(),
     userId: req.user.id,
   });
-  console.log(req.user);
   res.redirect("/article/" + req.params.id);
 }
 
