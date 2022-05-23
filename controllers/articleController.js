@@ -1,7 +1,6 @@
 const sendEmail = require("../email");
 const { Article } = require("../models");
-const { Comment } = require("../models");
-const { User } = require("../models");
+const { Comment, User, Role } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -10,11 +9,38 @@ async function index(req, res) {}
 async function showArticle(req, res) {
   const options = { baseUrl: req.baseUrl };
 
-  const article = await Article.findByPk(req.params.id, { include: User });
+  const article = await Article.findByPk(req.params.id, {
+    include: { model: User, include: { model: Role } },
+  });
   const comments = await Comment.findAll({
     where: { articleId: req.params.id },
-    include: User,
+    include: {
+      model: User,
+      include: {
+        model: Role,
+      },
+    },
   });
+
+  // let canEdit = false;
+  // if (req.isAuthenticated()) {
+  //   const userRole = await User.findOne({
+  //     where: { id: req.user.id },
+  //     include: { model: Role },
+  //   }).role.role;
+  //   if (
+  //     userRole === "Administrador" ||
+  //     userRole === "Editor" ||
+  //     (userRole === "Escritor" && article.user.id === req.user.id)
+  //   ) {
+  //     let canEdit = true;
+  //   }
+  //   console.log(1, userRole);
+  //   console.log(3, req.user.id);
+  // }
+  // options["canEdit"] = canEdit;
+  // console.log(4, options);
+  // console.log(req.isAuthenticated());
   res.render("article", { article, comments, options });
 }
 
