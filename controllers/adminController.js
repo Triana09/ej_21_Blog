@@ -22,8 +22,7 @@ async function addArticle(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const valores = req.body;
-    const validaciones = errors.array();
-    res.render("add", { validaciones: validaciones, valores: valores });
+    res.render("add", { valores: valores });
   } else {
     form.parse(req, async (err, fields, files) => {
       const newArticles = await Article.create({

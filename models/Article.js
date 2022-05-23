@@ -10,18 +10,12 @@ module.exports = (sequelize, Model, DataTypes) => {
       },
       title: {
         type: DataTypes.STRING,
-        validate: {
-          len: [1, 50],
-        },
       },
       img: {
         type: DataTypes.STRING,
       },
       content: {
         type: DataTypes.TEXT,
-        validate: {
-          len: [10, 2000],
-        },
       },
       creationDate: {
         type: DataTypes.DATE,
