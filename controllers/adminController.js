@@ -11,6 +11,10 @@ async function showHomeAdmin(req, res) {
   res.render("admin", { articles, options });
 }
 
+async function showCreate(req, res) {
+  res.render("add");
+}
+
 async function addArticle(req, res) {
   const form = formidable({
     keepExtensions: true,
@@ -79,6 +83,7 @@ async function deleteArticle(req, res) {
 
 module.exports = {
   showHomeAdmin,
+  showCreate,
   addArticle,
   editArticle,
   deleteArticle,

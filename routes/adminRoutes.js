@@ -8,16 +8,13 @@ const rolePermissions = require("../middlewares/rolePermissions");
 // ...
 
 adminRouter.use("/", ensureAuthenticated);
+
 adminRouter.get("/", adminController.showHomeAdmin);
-
-adminRouter.get("/crear", (req, res) => {
-  res.render("add");
-});
+adminRouter.get("/crear", adminController.showCreate);
 adminRouter.post("/", adminController.addArticle);
-
 adminRouter.get("/editar/:id", rolePermissions.canUpdate, adminController.showEditArt);
-adminRouter.post("/editar/:id", adminController.editArticle);
+adminRouter.post("/editar/:id", rolePermissions.canUpdate, adminController.editArticle);
 
-adminRouter.post("/eliminar/:id", adminController.deleteArticle);
+adminRouter.post("/eliminar/:id", rolePermissions.canDelete, adminController.deleteArticle);
 
 module.exports = adminRouter;
