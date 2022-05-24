@@ -6,12 +6,8 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
-// register get
 authRouter.get("/register", authController.showRegister);
-
-// register post
 authRouter.post("/register", authController.postRegister);
-
 authRouter.get("/login", authController.showLogin);
 
 authRouter.post(
