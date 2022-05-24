@@ -19,7 +19,6 @@ module.exports = (req, res, next) => {
       return next();
     }
   } else {
-    console.log(req.url);
     req.session.previousUrl = req.originalUrl;
     res.redirect("/login");
   }

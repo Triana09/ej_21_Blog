@@ -6,7 +6,6 @@ const LocalStrategy = require("passport-local");
 
 // login get
 loginRoute.get("/", (req, res) => {
-  // console.log(req.session);
   res.render("login");
 });
 
