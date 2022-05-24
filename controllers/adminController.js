@@ -3,7 +3,6 @@ const confirmationEmail = require("../email");
 const { User } = require("../models");
 const { validationResult } = require("express-validator");
 const formidable = require("formidable");
-const express = require("express");
 
 async function showHomeAdmin(req, res) {
   const options = { baseUrl: req.baseUrl };
@@ -12,42 +11,27 @@ async function showHomeAdmin(req, res) {
 }
 
 async function addArticle(req, res) {
-  const form = formidable({
-    keepExtensions: true,
-    multiples: true,
-    uploadDir: __dirname + "/../public/img",
-    keepExtensions: true,
-  });
-
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const valores = req.body;
     const validaciones = errors.array();
     res.render("add", { validaciones: validaciones, valores: valores });
   } else {
-    form.parse(req, async (err, fields, files) => {
-      const newArticles = await Article.create({
-        title: fields.titleNewArt,
-        img: files.imgFileNewArt.filepath,
-        content: fields.contentNewArt,
-        userId: fields.userId_NewArt,
-
-        creationDate: Date.now(),
-      });
-
-      confirmationEmail();
-      res.redirect("/admin");
+    const newArticles = await Article.create({
+      title: req.body.titleNewArt,
+      img: req.body.imgNewArt,
+      content: req.body.contentNewArt,
+      userId: req.body.userId_NewArt,
+      creationDate: Date.now(),
     });
+    confirmationEmail();
+    res.redirect("/admin");
   }
 }
 
 async function showEditArt(req, res) {
   const article = await Article.findByPk(req.params.id);
-  if (article.userId === req.user.id) {
-    res.render("edit", { article: article });
-  } else {
-    res.redirect("/admin");
-  }
+  res.render("edit", { article: article });
 }
 async function editArticle(req, res) {
   const errors = validationResult(req);
