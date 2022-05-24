@@ -23,8 +23,6 @@ publicRouter.post("/comentario/:id", articleController.deleteComment);
 
 publicRouter.get("/about", pagesController.showAboutUs);
 
-publicRouter.get("/api/articles", pagesController.showJson);
-
 publicRouter.get("/contact", pagesController.showContact);
 
 publicRouter.get("/error", (req, res) => {

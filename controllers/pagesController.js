@@ -42,11 +42,6 @@ async function showAboutUs(req, res) {
   res.render("aboutUs", { options, login: res.locals });
 }
 
-async function showJson(req, res) {
-  const articles = await Article.findAll();
-  res.json(articles);
-}
-
 // Otros handlers...
 // ...
 
@@ -55,6 +50,5 @@ module.exports = {
   redirectToHome,
   showContact,
   showAboutUs,
-  showJson,
   showPerfil,
 };

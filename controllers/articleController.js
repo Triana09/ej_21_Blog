@@ -16,7 +16,7 @@ async function show(req, res) {
   if (req.isAuthenticated()) {
     rol = req.user.roleId;
   }
-  res.render("article", { article, comments, options, checkLog, rol });
+  res.render("article", { article, comments, options, checkLog, rol, login: res.locals });
 }
 
 async function postComment(req, res) {
