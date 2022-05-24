@@ -3,7 +3,7 @@ const adminRouter = express.Router();
 const adminController = require("../controllers/adminController");
 const { body, validationResult } = require("express-validator");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
-const canUpdate = require("../middlewares/canUpdate");
+const rolePermissions = require("../middlewares/rolePermissions");
 // Rutas del Admin:
 // ...
 
@@ -15,7 +15,7 @@ adminRouter.get("/crear", (req, res) => {
 });
 adminRouter.post("/", adminController.addArticle);
 
-adminRouter.get("/editar/:id", canUpdate, adminController.showEditArt);
+adminRouter.get("/editar/:id", rolePermissions.canUpdate, adminController.showEditArt);
 adminRouter.post("/editar/:id", adminController.editArticle);
 
 adminRouter.post("/eliminar/:id", adminController.deleteArticle);

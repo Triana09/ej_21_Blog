@@ -15,4 +15,4 @@ async function canUpdate(req, res, next) {
   }
 }
 
-module.exports = canUpdate;
+module.exports = { canUpdate };
