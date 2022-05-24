@@ -19,7 +19,8 @@ module.exports = (req, res, next) => {
       return next();
     }
   } else {
-    req.session.redirectTo = req.query.redirectTo;
+    console.log(req.url);
+    req.session.previousUrl = req.originalUrl;
     res.redirect("/login");
   }
 };

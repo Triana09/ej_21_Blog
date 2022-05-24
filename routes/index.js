@@ -6,6 +6,7 @@ const logoutRoute = require("./logoutRoutes");
 
 module.exports = (app) => {
   app.use(publicRoutes);
+
   app.use("/admin", adminRoutes);
   app.use("/registro", registerRoute);
   app.use("/login", loginRoute);

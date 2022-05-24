@@ -41,7 +41,7 @@
         <div class="card mb-3 shadow">
           <h5 class="card-header">Editar Artículo: <%= article.id %></h5>
           <div class="card-body">
-            <form action="/admin/editar/<%= article.id %>" method="post">
+            <form action="/admin/editar/<%= article.id %>?baseUrl=<%= baseUrl %>&userId=<%= userId %>" method="post">
               <div class="mb-3">
                 <label for="titleNewArt" class="form-label">Titulo</label>
                 <input
@@ -81,7 +81,7 @@
                   value="<%= article.img %>"
                 />
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="userId_NewArt" class="form-label">Id del autor/usuario</label>
                 <input
                   required
@@ -90,9 +90,9 @@
                   class="form-control"
                   id="userId_NewArt"
                   placeholder="Ingrese id del autor..."
-                  value="<%= article.userId %>"
+                  value=""
                 />
-              </div>
+              </div> -->
 
               <button type="submit" class="btn btn-success">Guardar</button>
             </form>

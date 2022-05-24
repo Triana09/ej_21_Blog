@@ -14,13 +14,18 @@ async function showHome(req, res) {
   );
   const users = await User.findAll();
   const comments = await Comment.findAll();
-  res.render("home", { articles, users, comments, options });
+  res.render("home", { articles, users, comments, options, login: res.locals });
 }
 
 async function showPerfil(req, res) {
+  // const user = await User.findByPk(req.params.id, { include: Role }, { include: Article });
+  const articles = await Article.findAll({
+    where: {
+      userId: req.params.id,
+    },
+  });
   const user = await User.findByPk(req.params.id, { include: Role });
-  console.log(user.roles);
-  res.render("perfil", { user });
+  res.render("perfil", { user, articles });
 }
 
 async function redirectToHome(req, res) {
@@ -29,12 +34,12 @@ async function redirectToHome(req, res) {
 
 async function showContact(req, res) {
   const options = { baseUrl: req.baseUrl };
-  res.render("contact", { options });
+  res.render("contact", { options, login: res.locals });
 }
 
 async function showAboutUs(req, res) {
   const options = { baseUrl: req.baseUrl };
-  res.render("aboutUs", { options });
+  res.render("aboutUs", { options, login: res.locals });
 }
 
 async function showJson(req, res) {

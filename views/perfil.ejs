@@ -20,25 +20,35 @@
     <div class="all d-flex flex-column justify-content-center align-items-center">
       <div class="container">
         <div class="card mb-3 shadow">
-          <h5 class="card-header">Perfil id</h5>
+          <h5 class="card-header">Perfil <%= user.id %></h5>
           <div class="card-body">
-            <h2 class="mb-1">Name</h2>
-            <p class="text-muted mt-0"><em>rol</em></p>
+            <h2 class="mb-1"><%= `${user.firstname} ${user.lastname}` %></h2>
+            <p class="text-muted mt-0"><em><%- user.role.role %> </em></p>
 
             <div class="list">
+                <h5>Mis Artículos:</h4>
               <ul class="list-group">
-                <li class="list-group-item">
-                  <div class="title"></div>
+                <% for(article of articles) {%>
+                <li class="list-group-item d-flex align-items-center justify-content-between">
+                  <div class="title"><p class="h5 "><%= article.title %></p></div>
                   <div class="action">
+
+                    <a class="text-decoration-none" href="/admin/editar/<%= article.id %>?baseUrl=profile&userId=<%= user.id %>">
                     <button type="button" class="btn btn-outline-secondary">Edit</button>
-                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    <a href="/admin/editar/<%= article.id %>"></a>
+
+                    <form class="d-inline" action="/admin/eliminar/<%=article.id %>?baseUrl=profile&userId=<%= user.id %>" method="post">
+                      <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>
                   </div>
                 </li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
+                <% } %>
               </ul>
             </div>
+<div class="mt-4 d-flex flex-row-reverse">
+    <button type="button" class="btn btn-outline-warning">Borrar Perfil</button>
+</div>
+            
           </div>
         </div>
         <a href="/home">Volver a Home</a>

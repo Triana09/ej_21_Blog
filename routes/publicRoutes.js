@@ -3,9 +3,12 @@ const publicRouter = express.Router();
 const pagesController = require("../controllers/pagesController");
 const articleController = require("../controllers/articleController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const userVisible = require("../middlewares/userEnVistas");
 
 // Rutas Públicas:
 // ...
+publicRouter.use("/", userVisible);
+
 publicRouter.get("/", pagesController.redirectToHome);
 
 publicRouter.get("/home/", pagesController.showHome);
