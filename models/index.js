@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
     logging: false, // Para que no aparezcan mensajes en consola.
   },
 );
-
+const Role = require("./Role")(sequelize, Model, DataTypes);
 const User = require("./User")(sequelize, Model, DataTypes);
 const Article = require("./Article")(sequelize, Model, DataTypes);
 const Comment = require("./Comment")(sequelize, Model, DataTypes);
@@ -23,9 +23,13 @@ Article.belongsTo(User);
 Article.hasMany(Comment);
 Comment.belongsTo(Article);
 
+User.belongsTo(Role);
+Role.hasMany(User);
+
 module.exports = {
   sequelize,
   User,
   Comment,
   Article,
+  Role,
 };

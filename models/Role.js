@@ -12,16 +12,16 @@ module.exports = (sequelize, Model, Datatypes) => {
         type: Datatypes.STRING,
       },
       read: {
-        type: Boolean,
+        type: Datatypes.BOOLEAN,
       },
       write: {
-        type: Boolean,
+        type: Datatypes.BOOLEAN,
       },
       edit: {
-        type: Boolean,
+        type: Datatypes.BOOLEAN,
       },
       delete: {
-        type: Boolean,
+        type: Datatypes.BOOLEAN,
       },
     },
     {

@@ -6,7 +6,6 @@ faker.locale = "es";
 // capaz podemos require la table de users y agregarlo random
 module.exports = async () => {
   const users = [];
-
   for (let i = 0; i < 50; i++) {
     const hash = await bcrypt.hash("a", 10);
     const firstName = faker.name.firstName();
