@@ -1,17 +1,32 @@
 const express = require("express");
 const apiRouter = express.Router();
-const apiController = require("../controllers/apiController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
+const apiArtController = require("../controllers/apiArtController");
+const apiUserController = require("../controllers/apiUserController");
+const apiCommentController = require("../controllers/apiCommentController");
+
 // ARTICULOS:
-apiRouter.get("/articles", apiController.showJsonAll);
+apiRouter.get("/articles", apiArtController.showJsonAll);
 
-apiRouter.get("/articles/:userId", apiController.showJsonByUser);
+apiRouter.get("/articles/:userId", apiArtController.showJsonByUser);
 
-apiRouter.get("/articles/search/", apiController.showJsonByTitle);
+apiRouter.get("/article/search", apiArtController.showJsonByTitle);
 
-apiRouter.post("/articles/new", apiController.newArt);
-apiRouter.patch("/articles/id:", apiController.editArt);
-apiRouter.delete("/articles/:id", apiController.deleteArt);
+apiRouter.post("/article/new", apiArtController.newArt);
+apiRouter.patch("/article/:id", apiArtController.editArt);
+apiRouter.delete("/article/:id", apiArtController.deleteArt);
+
+apiRouter.get("/users", apiUserController.showJsonAllUser);
+
+apiRouter.post("/user/new", apiUserController.newUser);
+apiRouter.patch("/user/:id", apiUserController.editUser);
+apiRouter.delete("/user/:id", apiUserController.deleteUser);
+
+apiRouter.get("/comments", apiCommentController.showJsonAllComment);
+
+apiRouter.post("/comment/new", apiCommentController.newComment);
+apiRouter.patch("/comment/:id", apiCommentController.editComment);
+apiRouter.delete("/comment/:id", apiCommentController.deleteComment);
 
 module.exports = apiRouter;

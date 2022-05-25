@@ -54,6 +54,7 @@ async function showEditArt(req, res) {
 }
 
 async function editArticle(req, res) {
+  console.log(req.body);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const article = await Article.findByPk(req.params.id);
