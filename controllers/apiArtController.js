@@ -8,7 +8,6 @@ const { Role } = require("../models");
 const jwt = require("jsonwebtoken");
 
 async function showJsonAll(req, res) {
-  console.log(req.user);
   const articles = await Article.findAll();
   res.json(articles);
 }
