@@ -1,18 +1,18 @@
 const express = require("express");
 const apiRouter = express.Router();
-const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
 const apiArtController = require("../controllers/apiArtController");
 const apiUserController = require("../controllers/apiUserController");
 const apiCommentController = require("../controllers/apiCommentController");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const apiTokenCreation = require("../middlewares/apiTokenCreation");
+const checkToken = require("../middlewares/checkToken");
 
-// jsw
-const jwt = require("jsonwebtoken");
-const token = jwt.sign({ email: "user123", role: 1 }, "pepe", (err, token) => {
-  console.log(token);
-});
+// apiRouter.use("/", ensureAuthenticated);
+apiRouter.use("/", apiTokenCreation);
 
-const checkJwt = require("express-jwt");
+// jsw-express:
+apiRouter.use("/", checkToken);
 
 // ARTICULOS:
 apiRouter.get("/articles", apiArtController.showJsonAll);

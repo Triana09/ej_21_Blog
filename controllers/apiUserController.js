@@ -14,30 +14,28 @@ async function showJsonAllUser(req, res) {
 async function newUser(req, res) {
   // pendiente: no anda req.body, llega vacio
   // console.log(req.body);
-  const hash = await bcrypt.hash("a", 10);
-
-  const add = await User.create({
-    firstname: "Agregado con POST",
-    lastname: "pepe",
-    email: "agregado@gmail.vom",
-    password: hash,
-    roleId: 1,
-  });
-  // res.redirect(/articles);
-  res.send("creado con exito");
+  try {
+    const add = await User.create({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.body.password,
+      roleId: req.body.roleId,
+    });
+    res.json("creado con exito");
+  } catch (error) {
+    res.json("Error, info no valida");
+  }
 }
 
 async function editUser(req, res) {
-  // pendiente: no anda req.body, llega vacio
-  // console.log(req.body);
-
   const editUser = await User.update(
     {
-      firstname: "Agregado con POST",
-      lastname: "pepe",
-      email: "agregado@gmail.vom",
-      // password: hash,
-      roleId: 1,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.body.password,
+      roleId: req.body.roleId,
     },
     {
       where: { id: req.params.id },

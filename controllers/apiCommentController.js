@@ -11,29 +11,25 @@ async function showJsonAllComment(req, res) {
 }
 
 async function newComment(req, res) {
-  // pendiente: no anda req.body, llega vacio
-  console.log(req.body.id);
-
-  const add = await Comment.create({
-    content: "comentario creado con post",
-    creationDate: Date.now(),
-    userId: 1,
-    articleId: 5,
-  });
-  // res.redirect(/articles);
-  res.json("creado con exito");
+  try {
+    const add = await Comment.create({
+      content: "comentario creado con post",
+      creationDate: Date.now(),
+      userId: 1,
+      articleId: 5,
+    });
+    res.json("creado con exito");
+  } catch (error) {
+    res.json("Error, no pudo ser creado");
+  }
 }
 
 async function editComment(req, res) {
-  // pendiente: no anda req.body, llega vacio
-  // console.log(req.body);
-
   const editComment = await Comment.update(
     {
-      title: "editado",
-      img: "editado",
-      content: "ediatdo loremalksfjlkasjflasjfkljdksadfasdfasdf",
-      userId: 1,
+      content: req.body.content,
+      userId: req.body.userId,
+      articleId: req.body.articleId,
     },
     {
       where: { id: req.params.id },

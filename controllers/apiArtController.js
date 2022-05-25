@@ -5,7 +5,10 @@ const { User } = require("../models");
 const { Comment } = require("../models");
 const { Role } = require("../models");
 
+const jwt = require("jsonwebtoken");
+
 async function showJsonAll(req, res) {
+  console.log(req.user);
   const articles = await Article.findAll();
   res.json(articles);
 }
@@ -36,31 +39,27 @@ async function showJsonByTitle(req, res) {
 }
 
 async function newArt(req, res) {
-  // pendiente: no anda req.body, llega vacio
-  // console.log(req.body);
-
-  const add = await Article.create({
-    title: "Agregado con Post.",
-    img: "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png",
-    content:
-      "asdfasdfsadfsadfasdf quis facilis vitae et. Occaecati mollitia accusantium recusandae. Est voluptas velit ut quia doloremque.\nNulla voluptatem tenetur autem quo. Ipsum a repellendus in ipsam facilis voluptatibus et. Voluptatem molestias quam distinctio eligendi sit quo harum earum. Quas non eaque. Mollitia sint eos non repellendus rerum similique cupiditate.\nSaepe at voluptates dolorem inventore ea veritatis inventore et labore. Qui molestiae eos nam vel. Iure eum nihil cumque mollitia numquam odit placeat sapiente. Eaque enim amet iste et voluptates est quos. Nemo et voluptates architecto et. Quis delectus sunt ut magni sit.",
-    userId: 1,
-    creationDate: Date.now(),
-  });
-  // res.redirect(/articles);
-  res.send("creado con exito");
+  try {
+    const add = await Article.create({
+      title: req.body.title,
+      img: req.body.img,
+      content: req.body.content,
+      userId: req.body.userId,
+      creationDate: Date.now(),
+    });
+    res.json("creado con exito");
+  } catch (error) {
+    res.json("Error no se pudo crear");
+  }
 }
 
 async function editArt(req, res) {
-  // pendiente: no anda req.body, llega vacio
-  // console.log(req.body);
-
   const editArticle = await Article.update(
     {
-      title: "editado",
-      img: "editado",
-      content: "ediatdo loremalksfjlkasjflasjfkljdksadfasdfasdf",
-      userId: 1,
+      title: req.body.title,
+      img: req.body.img,
+      content: req.body.content,
+      userId: req.body.userId,
     },
     {
       where: { id: req.params.id },
