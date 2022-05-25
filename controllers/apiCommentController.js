@@ -12,7 +12,7 @@ async function showJsonAllComment(req, res) {
 
 async function newComment(req, res) {
   // pendiente: no anda req.body, llega vacio
-  // console.log(req.body);
+  console.log(req.body.id);
 
   const add = await Comment.create({
     content: "comentario creado con post",
@@ -21,7 +21,7 @@ async function newComment(req, res) {
     articleId: 5,
   });
   // res.redirect(/articles);
-  res.send("creado con exito");
+  res.json("creado con exito");
 }
 
 async function editComment(req, res) {

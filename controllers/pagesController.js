@@ -14,7 +14,7 @@ async function showHome(req, res) {
   );
   const users = await User.findAll();
   const comments = await Comment.findAll();
-  res.render("home", { articles, users, comments, options, login: res.locals });
+  res.render("home", { articles, users, comments, options });
 }
 
 async function showPerfil(req, res) {
@@ -34,12 +34,12 @@ async function redirectToHome(req, res) {
 
 async function showContact(req, res) {
   const options = { baseUrl: req.baseUrl };
-  res.render("contact", { options, login: res.locals });
+  res.render("contact", { options });
 }
 
 async function showAboutUs(req, res) {
   const options = { baseUrl: req.baseUrl };
-  res.render("aboutUs", { options, login: res.locals });
+  res.render("aboutUs", { options });
 }
 
 // Otros handlers...

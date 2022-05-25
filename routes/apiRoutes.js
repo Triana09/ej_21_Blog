@@ -6,6 +6,14 @@ const apiArtController = require("../controllers/apiArtController");
 const apiUserController = require("../controllers/apiUserController");
 const apiCommentController = require("../controllers/apiCommentController");
 
+// jsw
+const jwt = require("jsonwebtoken");
+const token = jwt.sign({ email: "user123", role: 1 }, "pepe", (err, token) => {
+  console.log(token);
+});
+
+const checkJwt = require("express-jwt");
+
 // ARTICULOS:
 apiRouter.get("/articles", apiArtController.showJsonAll);
 
