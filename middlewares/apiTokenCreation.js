@@ -6,6 +6,7 @@ module.exports = (req, res, next) => {
     process.env.JWT_SECRET,
     (err, token) => {
       req.headers.authorization = token;
+      console.log(token);
       return next();
     },
   );

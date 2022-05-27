@@ -25,6 +25,7 @@ apiRouter.get("/users", apiUserController.showJsonAllUser);
 apiRouter.get("/comments", apiCommentController.showJsonAllComment);
 
 apiRouter.use("/", onlyAdmin);
+
 apiRouter.post("/article/new", apiArtController.newArt);
 apiRouter.patch("/article/:id", apiArtController.editArt);
 apiRouter.delete("/article/:id", apiArtController.deleteArt);

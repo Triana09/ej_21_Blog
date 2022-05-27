@@ -14,8 +14,6 @@ const LocalStrategy = require("passport-local");
 const express = require("express");
 const routes = require("./routes");
 const dbInitialSetup = require("./dbInitialSetup");
-const req = require("express/lib/request");
-const res = require("express/lib/response");
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 
